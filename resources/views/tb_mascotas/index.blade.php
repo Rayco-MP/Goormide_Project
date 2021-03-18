@@ -11,11 +11,11 @@
 	<table id="tabla_tb_mascotas" class="table table-bordered table-striped">
 		
 		<thead>
-			<tr><th>Id</th><th>Propietario</th><th>Nombre</th><th>Sexo</th><th>Raza</th><th>Color</th><th>Peso</th><th>Fecha de Nacimiento</th><th>Microchip</th><th>Esterilizado</th><th>Borrar</th><th>Ver</th><th>Editar</th></tr>
+			<tr><th style="display:none;"></th><th>Id</th><th>Propietario</th><th>Nombre</th><th>Sexo</th><th>Raza</th><th>Color</th><th>Peso</th><th>Fecha de Nacimiento</th><th>Microchip</th><th>Esterilizado</th><th>Borrar</th><th>Ver</th><th>Editar</th></tr>
 		</thead>
 		<tbody>
 			@foreach($tb_mascotas as $tb_mascota)
-				<tr><td>{{$tb_mascota->id}}</td><td>{{$tb_mascota->tb_cliente->nombre}}</td><td>{{$tb_mascota->nombre}}</td><td>{{$tb_mascota->sexo}}</td><td>{{$tb_mascota->raza}}</td><td>{{$tb_mascota->color}}</td><td>{{$tb_mascota->peso}}</td><td>{{$tb_mascota->fecha_nacimiento}}</td><td>{{$tb_mascota->microchip}}</td><td>{{$tb_mascota->esterilizado}}</td>
+				<tr><td style="display:none;"></td><td>{{$tb_mascota->id}}</td><td>{{$tb_mascota->tb_cliente->nombre}}</td><td>{{$tb_mascota->nombre}}</td><td>{{$tb_mascota->sexo}}</td><td>{{$tb_mascota->raza}}</td><td>{{$tb_mascota->color}}</td><td>{{$tb_mascota->peso}}</td><td>{{$tb_mascota->fecha_nacimiento}}</td><td>{{$tb_mascota->microchip}}</td><td>{{$tb_mascota->esterilizado}}</td>
 
 				<td>
 					<form method="POST" action="/tb_mascotas/{{$tb_mascota->id}}">

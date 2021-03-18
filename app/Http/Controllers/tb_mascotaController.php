@@ -68,7 +68,7 @@ class tb_mascotaController extends Controller
 			 	'color' => 'required',
 			 	'peso' => 'required',
 			 	'fecha_nacimiento' => 'required',
-			 	'microchip' => 'required',
+			 	'microchip' => 'required|min:15|max:15',
 			 	'esterilizado' => 'required',
             ], /*[
                 'empresa.required' => 'Empresa is required',

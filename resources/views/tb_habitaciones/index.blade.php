@@ -11,11 +11,11 @@
 	<table id="tabla_tb_habitaciones" class="table table-bordered table-striped">
 		
 		<thead>
-			<tr><th>Id</th><th>Habitacion</th><th>Precio</th><th>Borrar</th><th>Ver</th><th>Editar</th></tr>
+			<tr><th style="display:none;"></th><th>Id</th><th>Habitacion</th><th>Precio</th><th>Borrar</th><th>Ver</th><th>Editar</th></tr>
 		</thead>
 		<tbody>
 			@foreach($tb_habitaciones as $tb_habitacion)
-				<tr><td>{{$tb_habitacion->id}}</td><td>{{$tb_habitacion->habitacion}}</td><td>{{$tb_habitacion->precio}}</td>
+				<tr><td style="display:none;"></td><td>{{$tb_habitacion->id}}</td><td>{{$tb_habitacion->habitacion}}</td><td>{{$tb_habitacion->precio}}</td>
 
 				<td>
 					<form method="POST" action="/tb_habitaciones/{{$tb_habitacion->id}}">

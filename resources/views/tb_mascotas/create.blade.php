@@ -21,6 +21,7 @@
 	  <div class="form-group">
 		<label >Propietario</label>
 		<select name="cliente_id" id="cliente_id" class="form-control">
+			<option value="" selected disabled hidden>Seleccione Propietario</option>
 			@foreach($tb_clientes as $tb_cliente)
 			<option value="{{$tb_cliente->id??''}}">{{$tb_cliente->nombre??''}}</option>
 			@endforeach
@@ -38,7 +39,11 @@
 	  </div>
 	  <div class="form-group">
 		<label >Sexo</label>
-		<input  name="sexo" type="text" value="{{$tb_mascota->sexo??''}}" class="form-control" >
+		<select name="sexo" id="sexo" class="form-control">
+			<option value="" selected disabled hidden>Selecione sexo</option>
+			<option value="macho">Macho</option>
+			<option value="hembra">Hembra</option>
+		</select>
 		  @if ($errors->has('sexo'))
             <span class="text-danger">{{ $errors->first('sexo') }}</span>
         	@endif
@@ -80,7 +85,11 @@
 	  </div>
 	  <div class="form-group">
 		<label >Esterilizado</label>
-		<input  name="esterilizado" type="text" value="{{$tb_mascota->esterilizado??''}}" class="form-control" >
+		<select name="esterilizado" id="esterilizado" class="form-control">
+			<option value="" selected disabled hidden>Si/No</option>
+			<option value="si">Si</option>
+			<option value="no">No</option>
+		</select>
 		  @if ($errors->has('esterilizado'))
             <span class="text-danger">{{ $errors->first('esterilizado') }}</span>
         	@endif

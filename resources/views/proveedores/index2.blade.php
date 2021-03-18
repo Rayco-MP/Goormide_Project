@@ -11,11 +11,11 @@
 	<table id="tabla_proveedores" class="table table-bordered table-striped">
 		
 		<thead>
-			<tr><th>Id</th><th>Empresa</th><th>Cargo de contacto</th><th>Ciudad</th><th>Borrar</th><th>Ver</th><th>Editar</th></tr>
+			<tr><th style="display:none">Id</th><th>Id</th><th>Empresa</th><th>Cargo de contacto</th><th>Ciudad</th><th>Borrar</th><th>Ver</th><th>Editar</th></tr>
 		</thead>
 		<tbody>
 			@foreach($proveedores as $proveedor)
-				<tr><td>{{$proveedor->id}}</td><td>{{$proveedor->empresa}}</td><td>{{$proveedor->cargo_contacto}}</td><td>{{$proveedor->ciudad}}</td>
+				<tr><td style="display:none">{{$proveedor->id}}</td><td>{{$proveedor->id}}</td><td>{{$proveedor->empresa}}</td><td>{{$proveedor->cargo_contacto}}</td><td>{{$proveedor->ciudad}}</td>
 
 				<td>
 					<form method="POST" action="/proveedores/{{$proveedor->id}}">

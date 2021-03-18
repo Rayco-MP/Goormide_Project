@@ -20,7 +20,7 @@
 		 
 	  <div class="form-group">
 		<label >Habitacion</label>
-		<input name="habitacion" type="text" value="{{$tb_habitacion->habitacion??''}}" class="form-control" >
+		<input name="habitacion" type="text" value="Nº{{$tb_habitacion->habitacion??''}}" class="form-control" >
 		  @if ($errors->has('habitacion'))
             <span class="text-danger">{{ $errors->first('habitacion') }}</span>
         	@endif

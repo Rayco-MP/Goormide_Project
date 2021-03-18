@@ -65,7 +65,9 @@ class tb_reservaController extends Controller
 		$validatedData = $request->validate([
                 'pide_reserva' => 'required',
                 'entrada' => 'required',
+				'hora_entrada' => 'required',
                 'salida' => 'required',
+				'hora_salida' => 'required',
 			 	'mascota_id' => 'required',
 			 	'habitacion_id' => 'required',
 			 	'dieta_id' => 'required',

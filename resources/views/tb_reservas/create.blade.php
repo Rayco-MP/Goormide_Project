@@ -33,10 +33,24 @@
         	@endif
 	  </div>
 	  <div class="form-group">
+		<label >Hora de entrada</label>
+		<input  name="hora_entrada" type="time" value="{{$tb_reserva->hora_entrada??''}}"  class="form-control" >
+		  @if ($errors->has('hora_entrada'))
+            <span class="text-danger">{{ $errors->first('hora_entrada') }}</span>
+        	@endif
+	  </div>
+	  <div class="form-group">
 		<label >Salida</label>
 		<input  name="salida" type="date" value="{{$tb_reserva->salida??''}}" class="form-control" >
 		  @if ($errors->has('salida'))
             <span class="text-danger">{{ $errors->first('salida') }}</span>
+        	@endif
+	  </div>
+	  <div class="form-group">
+		<label >Hora de salida</label>
+		<input  name="hora_salida" type="time" value="{{$tb_reserva->hora_salida??''}}"  class="form-control" >
+		  @if ($errors->has('hora_salida'))
+            <span class="text-danger">{{ $errors->first('hora_salida') }}</span>
         	@endif
 	  </div>
 	  <div class="form-group">

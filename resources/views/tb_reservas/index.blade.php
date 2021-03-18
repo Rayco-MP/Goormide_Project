@@ -11,11 +11,11 @@
 	<table id="tabla_tb_reservas" class="table table-bordered table-striped">
 		
 		<thead>
-			<tr><th>Id</th><th>Dia de la reserva</th><th>Entrada</th><th>Salida</th><th>Mascota</th><th>Habitacion</th><th>Dieta</th><th>Borrar</th><th>Ver</th><th>Editar</th></tr>
+			<tr><th style="display:none;"></th><th>Id</th><th>Dia de la reserva</th><th>Entrada</th><th>Hora de entrada</th><th>Salida</th><th>Hora de salida</th><th>Mascota</th><th>Habitacion</th><th>Dieta</th><th>Borrar</th><th>Ver</th><th>Editar</th></tr>
 		</thead>
 		<tbody>
 			@foreach($tb_reservas as $tb_reserva)
-				<tr><td>{{$tb_reserva->id}}</td><td>{{$tb_reserva->pide_reserva}}</td><td>{{$tb_reserva->entrada}}</td><td>{{$tb_reserva->salida}}</td><td>{{$tb_reserva->tb_mascota->nombre}}</td><td>{{$tb_reserva->tb_habitacion->habitacion}}</td><td>{{$tb_reserva->tb_dieta->tipo_dieta}}</td>
+				<tr><td style="display:none;"></td><td>{{$tb_reserva->id}}</td><td>{{$tb_reserva->pide_reserva}}</td><td>{{$tb_reserva->entrada}}</td><td>{{$tb_reserva->hora_entrada}}</td><td>{{$tb_reserva->salida}}</td><td>{{$tb_reserva->hora_salida}}</td><td>{{$tb_reserva->tb_mascota->nombre}}</td><td>{{$tb_reserva->tb_habitacion->habitacion}}</td><td>{{$tb_reserva->tb_dieta->tipo_dieta}}</td>
 
 				<td>
 					<form method="POST" action="/tb_reservas/{{$tb_reserva->id}}">

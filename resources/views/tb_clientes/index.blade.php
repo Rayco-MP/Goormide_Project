@@ -11,11 +11,11 @@
 	<table id="tabla_tb_clientes" class="table table-bordered table-striped">
 		
 		<thead>
-			<tr><th>Id</th><th>Nombre</th><th>Apellidos</th><th>Direccion</th><th>CP</th><th>Localidad</th><th>Provincia</th><th>Pais</th><th>Telefono</th><th>Email</th><th>NIF</th><th>Borrar</th><th>Ver</th><th>Editar</th></tr>
+			<tr><th style="display:none"></th><th>Id</th><th>Nombre</th><th>Apellidos</th><th>Direccion</th><th>CP</th><th>Localidad</th><th>Provincia</th><th>Pais</th><th>Telefono</th><th>Email</th><th>NIF</th><th>Borrar</th><th>Ver</th><th>Editar</th><th></th></tr>
 		</thead>
 		<tbody>
 			@foreach($tb_clientes as $tb_cliente)
-				<tr><td>{{$tb_cliente->id}}</td><td>{{$tb_cliente->nombre}}</td><td>{{$tb_cliente->apellidos}}</td><td>{{$tb_cliente->direccion}}</td><td>{{$tb_cliente->cp}}</td><td>{{$tb_cliente->localidad}}</td><td>{{$tb_cliente->provincia}}</td><td>{{$tb_cliente->pais}}</td><td>{{$tb_cliente->telefono}}</td><td>{{$tb_cliente->email}}</td><td>{{$tb_cliente->nif}}</td>
+				<tr><td style="display:none"></td><td>{{$tb_cliente->id}}</td><td>{{$tb_cliente->nombre}}</td><td>{{$tb_cliente->apellidos}}</td><td>{{$tb_cliente->direccion}}</td><td>{{$tb_cliente->cp}}</td><td>{{$tb_cliente->localidad}}</td><td>{{$tb_cliente->provincia}}</td><td>{{$tb_cliente->pais}}</td><td>{{$tb_cliente->telefono}}</td><td>{{$tb_cliente->email}}</td><td>{{$tb_cliente->nif}}</td>
 
 				<td>
 					<form method="POST" action="/tb_clientes/{{$tb_cliente->id}}">
@@ -30,12 +30,30 @@
 				<td>
 					<a href="/tb_clientes/{{$tb_cliente->id}}/edit" class="btn btn-warning">Editar</a>
 				</td>	
-
+				<td><div class="btn btn-crimson btn-inline-block" data-toggle="modal" data-target="#myModal-{{$tb_cliente->id}}"><a href="#" class="btn btn-success">View more info</a></div></td>
 				</tr>
+			<!--MODAL -->
+			<div class="modal fade" id="myModal-{{$tb_cliente->id}}" role="dialog">
+				<div class="modal-dialog">
+				  <!-- MODAL content -->
+				  <div class="modal-content" style="width:70%; margin:0 auto; margin-top:100px; max-height: calc(100vh - 210px); overflow-y: auto;">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal">×</button>
+					  <h4 class="modal-title">Subject: {{ $tb_cliente->nombre }}</h4>
+			   </div>
+			<div class="modal-body" style="padding-top:0">
+
+			</div>
+			<div class="modal-footer">
+			   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+			<!-- /. modal content-->
 			@endforeach
 		</tbody>
 	</table>
 </div>
+
+
 
 <script>
 	$(document).ready(function(){

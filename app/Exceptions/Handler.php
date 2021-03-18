@@ -32,6 +32,12 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        //
+        /*$this->renderable(function (\Error $e, $request) {
+			dd($e);
+		});
+		
+		$this->renderable(function (\Exception $e, $request) {
+			dd($e)
+		})*/
     }
 }
