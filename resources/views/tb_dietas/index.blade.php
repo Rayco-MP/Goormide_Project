@@ -1,8 +1,8 @@
-@extends("layouts.app4")
+@extends("layouts.app6")
 
 @section("content")
 
-<div class="container">
+
 	
 <a class="btn btn-success" href="/tb_dietas/create">Nueva dieta</a>
 <a class="btn btn-warning pdf" href="/tb_dietas/pdf">Sacar PDF</a>
@@ -35,7 +35,7 @@
 			@endforeach
 		</tbody>
 	</table>
-</div>
+
 
 <script>
 	$(document).ready(function(){

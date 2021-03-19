@@ -1,21 +1,21 @@
-@extends("layouts.app4")
+@extends("layouts.app6")
 
 @section("content")
 
-<div class="index">
+
 	
 <a class="btn btn-success" href="/tb_clientes/create">Nuevo Cliente</a>
 <a class="btn btn-warning pdf" href="/tb_clientes/pdf">Sacar PDF</a>
 	
  	
-	<table id="tabla_tb_clientes" class="table table-bordered table-striped">
+	<table id="tabla_mostrar" class="table table-bordered table-striped">
 		
 		<thead>
-			<tr><th style="display:none"></th><th>Id</th><th>Nombre</th><th>Apellidos</th><th>Direccion</th><th>CP</th><th>Localidad</th><th>Provincia</th><th>Pais</th><th>Telefono</th><th>Email</th><th>NIF</th><th>Borrar</th><th>Ver</th><th>Editar</th><th></th></tr>
+			<tr><th style="display:none"></th><th>Id</th><th>Nombre</th><th>Apellidos</th><th>Telefono</th><th>Email</th><th>NIF</th><th>Borrar</th><th>Ver</th><th>Editar</th><th></th></tr>
 		</thead>
 		<tbody>
 			@foreach($tb_clientes as $tb_cliente)
-				<tr><td style="display:none"></td><td>{{$tb_cliente->id}}</td><td>{{$tb_cliente->nombre}}</td><td>{{$tb_cliente->apellidos}}</td><td>{{$tb_cliente->direccion}}</td><td>{{$tb_cliente->cp}}</td><td>{{$tb_cliente->localidad}}</td><td>{{$tb_cliente->provincia}}</td><td>{{$tb_cliente->pais}}</td><td>{{$tb_cliente->telefono}}</td><td>{{$tb_cliente->email}}</td><td>{{$tb_cliente->nif}}</td>
+				<tr><td style="display:none"></td><td>{{$tb_cliente->id}}</td><td>{{$tb_cliente->nombre}}</td><td>{{$tb_cliente->apellidos}}</td><td>{{$tb_cliente->telefono}}</td><td>{{$tb_cliente->email}}</td><td>{{$tb_cliente->nif}}</td>
 
 				<td>
 					<form method="POST" action="/tb_clientes/{{$tb_cliente->id}}">
@@ -30,11 +30,11 @@
 				<td>
 					<a href="/tb_clientes/{{$tb_cliente->id}}/edit" class="btn btn-warning">Editar</a>
 				</td>	
-				<td><div class="btn btn-crimson btn-inline-block" data-toggle="modal" data-target="#myModal-{{$tb_cliente->id}}"><a href="#" class="btn btn-success">View more info</a></div></td>
+				<td><div class="btn btn-crimson btn-inline-block" data-toggle="modal" data-target="#myModal-{{$tb_cliente->id}}"><a href="#" class="btn btn-success">View</a></div></td>
 				</tr>
 			<!--MODAL -->
 			<div class="modal fade" id="myModal-{{$tb_cliente->id}}" role="dialog">
-				<div class="modal-dialog">
+				<div class="modal-dialog modal-lg">
 				  <!-- MODAL content -->
 				  <div class="modal-content" style="width:70%; margin:0 auto; margin-top:100px; max-height: calc(100vh - 210px); overflow-y: auto;">
 					<div class="modal-header">
@@ -51,13 +51,10 @@
 			@endforeach
 		</tbody>
 	</table>
-</div>
-
-
 
 <script>
 	$(document).ready(function(){
-		var t=$("#tabla_tb_clientes").DataTable({
+		var t=$("#tabla_mostrar").DataTable({
 			"language": {
 				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
 			}
@@ -68,7 +65,8 @@
             cell.innerHTML = i+1;
         } );
     } ).draw();	
-	});
+	});		
 </script>
+
 
 @endsection
