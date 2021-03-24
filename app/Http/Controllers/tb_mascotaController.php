@@ -25,8 +25,9 @@ class tb_mascotaController extends Controller
     public function index()
     {
         $tb_mascotas=tb_mascota::all();
+		$tb_clientes=tb_cliente::all();
 		
-		return view("tb_mascotas.index",compact("tb_mascotas"));
+		return view("tb_mascotas.index",compact("tb_mascotas","tb_clientes"));
     }
 
 	

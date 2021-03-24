@@ -28,7 +28,11 @@ class tb_reservaController extends Controller
     {
         $tb_reservas=tb_reserva::all();
 		
-		return view("tb_reservas.index",compact("tb_reservas"));
+		$tb_mascotas=tb_mascota::all();
+		$tb_habitaciones=tb_habitacion::all();
+		$tb_dietas=tb_dieta::all();
+		
+		return view("tb_reservas.index",compact("tb_reservas","tb_mascotas","tb_habitaciones","tb_dietas"));
     }
 
 	

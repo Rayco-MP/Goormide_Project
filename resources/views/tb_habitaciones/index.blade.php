@@ -4,53 +4,148 @@
 
 
 	
-<a class="btn btn-success" href="/tb_habitaciones/create">Nueva Habitacion</a>
-<a class="btn btn-warning pdf" href="/tb_habitaciones/pdf">Sacar PDF</a>
+<div class="btn btn-crimson btn-inline-block" data-toggle="modal" data-target="#myModalCreate">
+	<a href="#" class="btn btn-primary"><i class="material-icons">add</i></a>
+</div>
+<a class="btn btn-warning pdf" href="/tb_habitaciones/pdf"><i class="material-icons">picture_as_pdf</i></a>
 	
  	
-	<table id="tabla_tb_habitaciones" class="table table-bordered table-striped">
+	<table id="tabla_mostrar" class="table table-bordered table-striped">
 		
 		<thead>
-			<tr><th style="display:none;"></th><th>Id</th><th>Habitacion</th><th>Precio</th><th>Borrar</th><th>Ver</th><th>Editar</th></tr>
+			<tr>
+				<th style="display:none;"></th>
+				<th>Id</th><th>Habitacion</th>
+				<th>Precio</th>
+				<th>Utilidades</th>
+			</tr>
 		</thead>
 		<tbody>
 			@foreach($tb_habitaciones as $tb_habitacion)
-				<tr><td style="display:none;"></td><td>{{$tb_habitacion->id}}</td><td>{{$tb_habitacion->habitacion}}</td><td>{{$tb_habitacion->precio}}</td>
-
-				<td>
-					<form method="POST" action="/tb_habitaciones/{{$tb_habitacion->id}}">
-						<input class="btn btn-danger" type="submit" value="Borrar"> 
-						<input type="hidden" name="_method" value="DELETE">
-						@csrf
-					</form>		
-				</td>
-				<td>
-					<a href="/tb_habitaciones/{{$tb_habitacion->id}}" class="btn btn-success">Ver</a>
-				</td>
-				<td>
-					<a href="/tb_habitaciones/{{$tb_habitacion->id}}/edit" class="btn btn-warning">Editar</a>
-				</td>	
-
+				<tr>
+					<td style="display:none;"></td>
+					<td>{{$tb_habitacion->id}}</td>
+					<td>{{$tb_habitacion->habitacion}}</td>
+					<td>{{$tb_habitacion->precio}}</td>
+					<td>
+							
+						<!--<a href="/tb_habitaciones/{{$tb_habitacion->id}}" class="btn btn-success">Ver</a>-->
+					
+						<div class="btn btn-crimson btn-inline-block" data-toggle="modal" data-target="#myModalEdit-{{$tb_habitacion->id}}">
+							<a href="#" class="btn btn-warning"><i class="material-icons">border_color</i></a>
+						</div>
+						<div class="btn btn-crimson btn-inline-block">
+							<form method="POST" action="/tb_habitaciones/{{$tb_habitacion->id}}">
+								<button class="btn btn-danger" type="submit"><i class="material-icons">delete</i></button>
+								<input type="hidden" name="_method" value="DELETE">
+								@csrf
+							</form>
+						</div>
+					</td>	
 				</tr>
 			@endforeach
 		</tbody>
 	</table>
 
+<!--MODAL Crear Habitacion-->
+			<div class="modal fade" id="myModalCreate" role="dialog">
+				<div class="modal-dialog modal-xl">
+				<!-- MODAL content -->
+					<div class="modal-content" style="width:70%; margin:0 auto; margin-top:100px; max-height: calc(100vh - 210px); overflow-y: auto;">
+						<div class="modal-header" style="background-color:#E2E2E2">
+							<button type="button" class="close" data-dismiss="modal">×</button>
+							<h1>Creando nueva Habitacion</h1>
+			    		</div>
+						<div class="modal-body" style="height:70%;">
+							<form class="form-horizontal" method="POST" action="{{ route('tb_habitaciones.store') }}">
+								<div class="form-group">
+								<label class="col-lg-2 control-label">Habitacion:</label>
+									<div class="col-lg-10">
+										<input name="habitacion" type="text" class="form-control" >
+										@if ($errors->has('habitacion'))
+											<span class="text-danger">{{ $errors->first('habitacion') }}</span>
+										@endif
+									</div>
+								</div>
+								<div class="form-group">
+								<label class="col-lg-2 control-label">Precio:</label>
+									<div class="col-lg-10">
+										<input  name="precio" type="text" class="form-control" >
+										@if ($errors->has('precio'))
+											<span class="text-danger">{{ $errors->first('precio') }}</span>
+										@endif
+									</div>
+								</div>
+								@csrf
+								<div class="form-group">
+								<label class="col-md-2 control-label"></label>
+								<div class="col-md-10">
+								  <button type="submit" class="btn btn-primary">Guardar</button>
+								  <span></span>
+								  
+								</div>
+							  </div>
+							</form> 
+						</div>
+						<div class="modal-footer" style="background-color:#E2E2E2">
+						   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						</div>
+				<!-- /. modal content-->
+					</div>	
+				</div>		
+			</div>
 
-<script>
-	$(document).ready(function(){
-		var t=$("#tabla_tb_habitaciones").DataTable({
-			"language": {
-				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-			}
-		});
-	
-		t.on( 'order.dt search.dt', function () {
-        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-        } );
-    } ).draw();	
-	});
-</script>
+
+@foreach($tb_habitaciones as $tb_habitacion)
+<!--MODAL Editar Dieta-->
+			<div class="modal fade" id="myModalEdit-{{$tb_habitacion->id}}" role="dialog">
+				<div class="modal-dialog modal-xl">
+				<!-- MODAL content -->
+					<div class="modal-content" style="width:70%; margin:0 auto; margin-top:100px; max-height: calc(100vh - 210px); overflow-y: auto;">
+						<div class="modal-header" style="background-color:#E2E2E2">
+							<button type="button" class="close" data-dismiss="modal">×</button>
+							<h1>Editando Habitacion</h1>
+			    		</div>
+						<div class="modal-body" style="height:70%;">
+							<form class="form-horizontal" method="POST" action="{{url('/tb_habitaciones')}}/{{$tb_habitacion->id}}">
+							<input type="hidden" name="_method" value="PUT">
+								<div class="form-group">
+								<label class="col-lg-2 control-label">Habitacion:</label>
+									<div class="col-lg-10">
+										<input name="habitacion" type="text" value="{{$tb_habitacion->habitacion??''}}" class="form-control" >
+										@if ($errors->has('habitacion'))
+											<span class="text-danger">{{ $errors->first('habitacion') }}</span>
+										@endif
+									</div>
+								</div>
+								<div class="form-group">
+								<label class="col-lg-2 control-label">Precio:</label>
+									<div class="col-lg-10">
+										<input  name="precio" type="text" value="{{$tb_habitacion->precio??''}}"  class="form-control" >
+										@if ($errors->has('precio'))
+											<span class="text-danger">{{ $errors->first('precio') }}</span>
+										@endif
+									</div>
+								</div>
+								@csrf
+								<div class="form-group">
+								<label class="col-md-2 control-label"></label>
+								<div class="col-md-10">
+								  <button type="submit" class="btn btn-primary">Guardar</button>
+								  <span></span>
+								  
+								</div>
+							  </div>
+							</form> 
+						</div>
+						<div class="modal-footer" style="background-color:#E2E2E2">
+						   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						</div>
+				<!-- /. modal content-->
+					</div>	
+				</div>		
+			</div>
+@endforeach
+
 
 @endsection

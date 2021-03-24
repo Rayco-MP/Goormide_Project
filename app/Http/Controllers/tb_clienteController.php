@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\tb_cliente;
+use App\Models\tb_mascota;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class tb_clienteController extends Controller
@@ -24,8 +25,8 @@ class tb_clienteController extends Controller
     public function index()
     {
         $tb_clientes=tb_cliente::all();
-		
-		return view("tb_clientes.index",compact("tb_clientes"));
+		$tb_mascotas=tb_mascota::all();
+		return view("tb_clientes.index",compact("tb_clientes","tb_mascotas"));
     }
 	
 	/*public function caninis()
@@ -50,7 +51,7 @@ class tb_clienteController extends Controller
      */
     public function create()
     {
-        return view("tb_clientes.create");
+        return view("tb_clientes.index");
     }
 
     /**

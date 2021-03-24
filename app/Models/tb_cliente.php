@@ -11,6 +11,6 @@ class tb_cliente extends Model
 	protected $guarded = [];
 	public function tb_mascota ()
 	{
-		return $this->hasMany('App\Models\tb_mascota','id', 'cliente_id');
+		return $this->hasMany('App\Models\tb_mascota','cliente_id');
 	}
 }
