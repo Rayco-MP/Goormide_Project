@@ -10,11 +10,11 @@
 <a class="btn btn-warning pdf" href="/tb_clientes/pdf"><i class="material-icons">picture_as_pdf</i></a>
 	
  	
-	<table id="tabla_mostrar" class="table table-bordered table-striped">
+	<table id="tabla_mostrar" class="table table-bordered table-striped" style="100%">
 		<thead class="thead-dark">
 			<tr>
-				<th style="display:none"></th>
-				<th>Id</th>
+				<th></th>
+				
 				<th>Nombre</th>
 				<th>Apellidos</th>
 				<th>Telefono</th>
@@ -26,8 +26,8 @@
 		<tbody>
 			@foreach($tb_clientes as $tb_cliente)
 				<tr>
-					<td style="display:none"></td>
-					<td>{{$tb_cliente->id}}</td>
+					<td></td>
+					
 					<td>{{$tb_cliente->nombre}}</td>
 					<td>{{$tb_cliente->apellidos}}</td>
 					<td>{{$tb_cliente->telefono}}</td>
@@ -48,7 +48,7 @@
 							<a href="/tb_clientes/{{$tb_cliente->id}}/edit" class="btn btn-warning">Editar</a>
 						</div>-->
 						<div class="btn btn-crimson btn-inline-block">
-							<form method="POST" action="/tb_clientes/{{$tb_cliente->id}}">
+							<form class="formulario-eliminar" method="POST" action="/tb_clientes/{{$tb_cliente->id}}">
 								<button class="btn btn-danger" type="submit"><i class="material-icons">delete</i></button>
 								<input type="hidden" name="_method" value="DELETE">
 								@csrf
@@ -418,4 +418,27 @@
 				</div>		
 			</div>
 @endforeach
+
+@if(Session::has('crear_cliente'))
+	<script>
+		toastr.info("{!!Session::get('crear_cliente')!!}");
+	</script>
+@endif
+
+@if(Session::has('editar_cliente'))
+	<script>
+		toastr.warning("{!!Session::get('editar_cliente')!!}");
+	</script>
+@endif
+
+@if(Session('eliminar') == "Ok.")
+	<script>
+		Swal.fire(
+			  '¡Eliminado!',
+			  'Los datos se han borrado.',
+			  'success'
+			)
+	</script>
+@endif
 @endsection
+

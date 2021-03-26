@@ -77,7 +77,7 @@ class tb_mascotaController extends Controller
             ]*/);
 		
 		tb_mascota::create($validatedData);
-		return  redirect('/tb_mascotas');
+		return  redirect('/tb_mascotas')->with("crear_mascota",'Se ha añadido una mascota correctamente.');
     }
 
     /**
@@ -120,7 +120,7 @@ class tb_mascotaController extends Controller
 		
 		tb_mascota::find($id)->update($datos);
 		
-		return  redirect('/tb_mascotas');
+		return  redirect('/tb_mascotas')->with("editar_mascota",'Se ha editado una mascota correctamente.');
     }
 
     /**
@@ -133,6 +133,6 @@ class tb_mascotaController extends Controller
     {
         tb_mascota::find($id)->delete();
 		
-		return  redirect('/tb_mascotas');
+		return  redirect('/tb_mascotas')->with("eliminar",'Ok.');
     }
 }

@@ -10,11 +10,12 @@
 <a class="btn btn-warning pdf" href="/tb_dietas/pdf"><i class="material-icons">picture_as_pdf</i></a>
 	
  	
-	<table id="tabla_mostrar" class="table table-bordered table-striped">
+	<table id="tabla_mostrar" class="table table-bordered table-striped" style="100%">
 		
 		<thead>
-			<tr><th style="display:none;"></th>
-				<th>Id</th>
+			<tr>
+				<th></th>
+				
 				<th>Dieta</th>
 				<th>Precio</th>
 				<th>Utilidades</th>
@@ -23,8 +24,8 @@
 		<tbody>
 			@foreach($tb_dietas as $tb_dieta)
 				<tr>
-					<td style="display:none;"></td>
-					<td>{{$tb_dieta->id}}</td>
+					<td></td>
+					
 					<td>{{$tb_dieta->tipo_dieta}}</td>
 					<td>{{$tb_dieta->precio}}</td>
 					<td>	
@@ -34,7 +35,7 @@
 							<a href="#" class="btn btn-warning"><i class="material-icons">border_color</i></a>
 						</div>
 						<div class="btn btn-crimson btn-inline-block">
-							<form method="POST" action="/tb_dietas/{{$tb_dieta->id}}">
+							<form class="formulario-eliminar" method="POST" action="/tb_dietas/{{$tb_dieta->id}}">
 								<button class="btn btn-danger" type="submit"><i class="material-icons">delete</i></button>
 								<input type="hidden" name="_method" value="DELETE">
 								@csrf
@@ -145,6 +146,28 @@
 				</div>		
 			</div>
 @endforeach
+
+@if(Session::has('crear_dieta'))
+	<script>
+		toastr.info("{!!Session::get('crear_dieta')!!}");
+	</script>
+@endif
+
+@if(Session::has('editar_dieta'))
+	<script>
+		toastr.warning("{!!Session::get('editar_dieta')!!}");
+	</script>
+@endif
+
+@if(Session('eliminar') == "Ok.")
+	<script>
+		Swal.fire(
+			  '¡Eliminado!',
+			  'Los datos se han borrado.',
+			  'success'
+			)
+	</script>
+@endif
 
 
 @endsection

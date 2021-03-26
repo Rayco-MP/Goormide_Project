@@ -14,6 +14,7 @@ use App\Http\Controllers\tb_reservaController;
 use App\Http\Controllers\tb_habitacionController;
 use App\Http\Controllers\tb_dietaController;
 use App\Http\Controllers\caninisController;
+use App\Http\Controllers\HighchartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +41,7 @@ Route::resource("taxis","TaxisController");
 Route::resource("capitanes","CapitanesController");
 
 //Proyecto
+Route::get('/chart', [HighchartController::class, 'handleChart']);
 Route::get("/tb_clientes/pdf",[tb_clienteController::class,"pdf"]);
 Route::get("/tb_mascotas/pdf",[tb_mascotaController::class,"pdf"]);
 Route::get("/tb_reservas/pdf",[tb_reservaController::class,"pdf"]);
@@ -56,7 +58,7 @@ Route::resource("caninis","caninisController");
 
 
 
-Route::get("/",[caninisController::class,"index"]);
+Route::get("/",[HighchartController::class,"handleChart"]);
 /*Route::get('/', function () {
     return view('welcome'); 
 });*/

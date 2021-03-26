@@ -10,12 +10,12 @@
 <a class="btn btn-warning pdf" href="/tb_reservas/pdf"><i class="material-icons">picture_as_pdf</i></a>
 	
  	
-	<table id="tabla_mostrar" class="table table-bordered table-striped">
+	<table id="tabla_mostrar" class="table table-bordered table-striped" style="100%">
 		
 		<thead>
 			<tr>
-				<th style="display:none;"></th>
-				<th>Id</th>
+				<th></th>
+				
 				<th>Dia de la reserva</th>
 				<th>Entrada</th>
 				<th>Hora de entrada</th>
@@ -30,8 +30,8 @@
 		<tbody>
 			@foreach($tb_reservas as $tb_reserva)
 				<tr>
-					<td style="display:none;"></td>
-					<td>{{$tb_reserva->id}}</td>
+					<td></td>
+					
 					<td>{{$tb_reserva->pide_reserva}}</td>
 					<td>{{$tb_reserva->entrada}}</td>
 					<td>{{$tb_reserva->hora_entrada}}</td>
@@ -48,7 +48,7 @@
 							<a href="#" class="btn btn-warning"><i class="material-icons">border_color</i></a>
 						</div>
 						<div class="btn btn-crimson btn-inline-block">
-							<form method="POST" action="/tb_reservas/{{$tb_reserva->id}}">
+							<form class="formulario-eliminar" method="POST" action="/tb_reservas/{{$tb_reserva->id}}">
 								<button class="btn btn-danger" type="submit"><i class="material-icons">delete</i></button>
 								<input type="hidden" name="_method" value="DELETE">
 								@csrf
@@ -189,15 +189,15 @@
 							<h1>Editando Reserva</h1>
 			    		</div>
 						<div class="modal-body" style="height:70%;">
-							<form class="form-horizontal" method="POST" action="{{url('/$tb_reservas')}}/{{$tb_reserva->id}}">
+							<form class="form-horizontal" method="POST" action="{{url('/tb_reservas')}}/{{$tb_reserva->id}}">
 							<input type="hidden" name="_method" value="PUT">
 								<div class="form-group">
 								<label class="col-lg-2 control-label">Dia de la reserva:</label>
 									<div class="col-lg-10">
 										<input name="pide_reserva" type="date" value="{{$tb_reserva->pide_reserva??''}}" class="form-control" >
 										@if ($errors->has('pide_reserva'))
-											<span class="text-danger">{{ $errors->first('pide_reserva') }}</span>
-										@endif
+            								<span class="text-danger">{{ $errors->first('pide_reserva') }}</span>
+        								@endif
 									</div>
 								</div>
 								<div class="form-group">
@@ -214,7 +214,7 @@
 									<div class="col-lg-10">
 										<input  name="hora_entrada" type="time" value="{{$tb_reserva->hora_entrada??''}}"  class="form-control" >
 										@if ($errors->has('hora_entrada'))
-            								<span class="text-danger">{{ $errors->first('hora_entrada') }}</span>
+            							<span class="text-danger">{{ $errors->first('hora_entrada') }}</span>
         								@endif
 									</div>
 								</div>
@@ -223,8 +223,8 @@
 									<div class="col-lg-10">
 										<input  name="salida" type="date" value="{{$tb_reserva->salida??''}}" class="form-control" >
 										@if ($errors->has('salida'))
-            								<span class="text-danger">{{ $errors->first('salida') }}</span>
-        								@endif
+											<span class="text-danger">{{ $errors->first('salida') }}</span>
+										@endif
 									</div>
 								</div>
 								<div class="form-group">
@@ -232,8 +232,8 @@
 									<div class="col-lg-10">
 										<input  name="hora_salida" type="time" value="{{$tb_reserva->hora_salida??''}}"  class="form-control" >
 										@if ($errors->has('hora_salida'))
-            								<span class="text-danger">{{ $errors->first('hora_salida') }}</span>
-        								@endif
+											<span class="text-danger">{{ $errors->first('hora_salida') }}</span>
+										@endif
 									</div>
 								</div>
 								<div class="form-group">
@@ -245,8 +245,8 @@
 											@endforeach
 										</select>
 										@if ($errors->has('mascota_id'))
-            								<span class="text-danger">{{ $errors->first('mascota_id') }}</span>
-        								@endif
+											<span class="text-danger">{{ $errors->first('mascota_id') }}</span>
+										@endif
 									</div>
 								</div>
 								<div class="form-group">
@@ -294,5 +294,29 @@
 				</div>		
 			</div>
 @endforeach
+
+@if(Session::has('crear_reserva'))
+	<script>
+		toastr.info("{!!Session::get('crear_reserva')!!}");
+	</script>
+@endif
+
+@if(Session::has('editar_reserva'))
+	<script>
+		toastr.warning("{!!Session::get('editar_reserva')!!}");
+	</script>
+@endif
+
+@if(Session('eliminar') == "Ok.")
+	<script>
+		Swal.fire(
+			  '¡Eliminado!',
+			  'Los datos se han borrado.',
+			  'success'
+			)
+	</script>
+@endif
+
+
 
 @endsection

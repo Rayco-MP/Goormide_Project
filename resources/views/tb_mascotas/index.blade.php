@@ -10,12 +10,12 @@
 <a class="btn btn-warning pdf" href="/tb_mascotas/pdf"><i class="material-icons">picture_as_pdf</i></a>
 	
  	
-	<table id="tabla_mostrar" class="table table-bordered table-striped">
+	<table id="tabla_mostrar" class="table table-bordered table-striped" style="100%">
 		
 		<thead>
 			<tr>
-				<th style="display:none;"></th>
-				<th>Id</th>
+				<th></th>
+				
 				<th>Propietario</th>
 				<th>Nombre</th>
 				<th>Sexo</th>
@@ -27,8 +27,8 @@
 		<tbody>
 			@foreach($tb_mascotas as $tb_mascota)
 				<tr>
-					<td style="display:none;"></td>
-					<td>{{$tb_mascota->id}}</td>
+					<td></td>
+					
 					<td>{{$tb_mascota->tb_cliente->nombre}}</td>
 					<td>{{$tb_mascota->nombre}}</td>
 					<td>{{$tb_mascota->sexo}}</td>
@@ -45,7 +45,7 @@
 						</div>
 						
 						<div class="btn btn-crimson btn-inline-block">
-							<form method="POST" action="/tb_mascotas/{{$tb_mascota->id}}">
+							<form class="formulario-eliminar" method="POST" action="/tb_mascotas/{{$tb_mascota->id}}">
 								<button class="btn btn-danger" type="submit"><i class="material-icons">delete</i></button> 
 								<input type="hidden" name="_method" value="DELETE">
 								@csrf
@@ -395,6 +395,28 @@
 				</div>		
 			</div>
 @endforeach
+
+@if(Session::has('crear_mascota'))
+	<script>
+		toastr.info("{!!Session::get('crear_mascota')!!}");
+	</script>
+@endif
+
+@if(Session::has('editar_mascota'))
+	<script>
+		toastr.warning("{!!Session::get('editar_mascota')!!}");
+	</script>
+@endif
+
+@if(Session('eliminar') == "Ok.")
+	<script>
+		Swal.fire(
+			  '¡Eliminado!',
+			  'Los datos se han borrado.',
+			  'success'
+			)
+	</script>
+@endif
 
 
 @endsection

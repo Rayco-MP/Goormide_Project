@@ -81,7 +81,7 @@ class tb_clienteController extends Controller
             ]*/);
 		
 		tb_cliente::create($validatedData);
-		return  redirect('/tb_clientes');
+		return  redirect('/tb_clientes')->with("crear_cliente",'Se ha añadido un cliente correctamente.');
     }
 
     /**
@@ -123,7 +123,7 @@ class tb_clienteController extends Controller
 		
 		tb_cliente::find($id)->update($datos);
 		
-		return  redirect('/tb_clientes');
+		return  redirect('/tb_clientes')->with("editar_cliente",'Se ha editado un cliente correctamente.');
     }
 
     /**
@@ -136,6 +136,6 @@ class tb_clienteController extends Controller
     {
         tb_cliente::find($id)->delete();
 		
-		return  redirect('/tb_clientes');
+		return  redirect('/tb_clientes')->with("eliminar",'Ok.');
     }
 }

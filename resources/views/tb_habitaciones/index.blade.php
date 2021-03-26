@@ -10,12 +10,13 @@
 <a class="btn btn-warning pdf" href="/tb_habitaciones/pdf"><i class="material-icons">picture_as_pdf</i></a>
 	
  	
-	<table id="tabla_mostrar" class="table table-bordered table-striped">
+	<table id="tabla_mostrar" class="table table-bordered table-striped" style="100%">
 		
 		<thead>
 			<tr>
-				<th style="display:none;"></th>
-				<th>Id</th><th>Habitacion</th>
+				<th></th>
+				
+				<th>Habitacion</th>
 				<th>Precio</th>
 				<th>Utilidades</th>
 			</tr>
@@ -23,8 +24,8 @@
 		<tbody>
 			@foreach($tb_habitaciones as $tb_habitacion)
 				<tr>
-					<td style="display:none;"></td>
-					<td>{{$tb_habitacion->id}}</td>
+					<td></td>
+					
 					<td>{{$tb_habitacion->habitacion}}</td>
 					<td>{{$tb_habitacion->precio}}</td>
 					<td>
@@ -35,7 +36,7 @@
 							<a href="#" class="btn btn-warning"><i class="material-icons">border_color</i></a>
 						</div>
 						<div class="btn btn-crimson btn-inline-block">
-							<form method="POST" action="/tb_habitaciones/{{$tb_habitacion->id}}">
+							<form class="formulario-eliminar" method="POST" action="/tb_habitaciones/{{$tb_habitacion->id}}">
 								<button class="btn btn-danger" type="submit"><i class="material-icons">delete</i></button>
 								<input type="hidden" name="_method" value="DELETE">
 								@csrf
@@ -147,5 +148,26 @@
 			</div>
 @endforeach
 
+@if(Session::has('crear_habitacion'))
+	<script>
+		toastr.info("{!!Session::get('crear_habitacion')!!}");
+	</script>
+@endif
+
+@if(Session::has('editar_habitacion'))
+	<script>
+		toastr.warning("{!!Session::get('editar_habitacion')!!}");
+	</script>
+@endif
+
+@if(Session('eliminar') == "Ok.")
+	<script>
+		Swal.fire(
+			  '¡Eliminado!',
+			  'Los datos se han borrado.',
+			  'success'
+			)
+	</script>
+@endif
 
 @endsection

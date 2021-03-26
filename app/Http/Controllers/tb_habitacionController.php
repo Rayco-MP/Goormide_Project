@@ -61,7 +61,7 @@ class tb_habitacionController extends Controller
             ]);
 		
 		tb_habitacion::create($validatedData);
-		return  redirect('/tb_habitaciones');
+		return  redirect('/tb_habitaciones')->with("crear_habitacion",'Se ha creado una habitacion correctamente.');
     }
 
     /**
@@ -103,7 +103,7 @@ class tb_habitacionController extends Controller
 		
 		tb_habitacion::find($id)->update($datos);
 		
-		return  redirect('/tb_habitaciones');
+		return  redirect('/tb_habitaciones')->with("editar_habitacion",'Se ha editado una habitacion correctamente.');
     }
 
     /**
@@ -116,6 +116,6 @@ class tb_habitacionController extends Controller
     {
         tb_habitacion::find($id)->delete();
 		
-		return  redirect('/tb_habitaciones');
+		return  redirect('/tb_habitaciones')->with("eliminar",'Ok.');
     }
 }

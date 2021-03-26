@@ -12,8 +12,45 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 	<script src="https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/r-2.2.7/datatables.min.css"/> 
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/r-2.2.7/datatables.min.js"></script>
+	<!-- HightChart -->
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	
+	<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+			integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+			crossorigin="anonymous"
+		/>
+	<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+			integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+			crossorigin="anonymous"
+	></script>
+	
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </head>
 <style>
+	
+.borde{
+	border-style:solid;
+	border-color: #fff;
+}
+#container1{
+	width:50%;
+	height:50%;
+	float:left;
+}
+#container2 {
+	width:50%;
+	height:50%;
+}
 	
 .material-icons{
 	vertical-align: -webkit-baseline-middle;
@@ -127,7 +164,43 @@
 	
 	
 	
-	
+#container3 {
+  height: 400px; 
+}
+
+.highcharts-figure, .highcharts-data-table table {
+  min-width: 320px; 
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #EBEBEB;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+  padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+  padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
 	
 	
 	
@@ -574,7 +647,7 @@ h1.page-header {
 			<!-- Main Menu -->
 			<div class="side-menu-container">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/caninis"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+					<li class="active"><a href="/chart"><span class="glyphicon glyphicon-signal"></span> Estadisticas</a></li>
 					<li class="active"><a href="/tb_clientes"><span class="glyphicon glyphicon-user"></span> Clientes </a></li>
 					<li class="active"><a href="/tb_mascotas"><span class="glyphicon glyphicon-cloud"></span> Mascotas </a></li>
 					<li class="active"><a href="/tb_reservas"><span class="glyphicon glyphicon-header"></span> Reservas </a></li>
@@ -632,11 +705,12 @@ h1.page-header {
   		<div class="col-md-10 content">
   			  <div class="panel panel-default">
 				@yield("content")
+			  
 </div>
   		<div>
   		<footer class="pull-left footer">
   			<p class="col-md-12">
-  				<hr class="divider">
+			<hr class="divider">
 			Copyright &COPY; 2021 <a href="/">Caninis</a>
   			</p>
   		</footer>
@@ -662,6 +736,7 @@ h1.page-header {
 
 	$(document).ready(function(){
 		var t=$("#tabla_mostrar").DataTable({
+			responsive: true,
 			"language": {
 				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
 			}
@@ -673,4 +748,32 @@ h1.page-header {
         } );
     } ).draw();	
 	});
+	
+	
+	
+	
+	$('.formulario-eliminar').submit(function(e){
+		e.preventDefault();
+		Swal.fire({
+		  title: '¿Esta usted seguro?',
+		  text: "¡No se podra revertir los cambios!",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Si, ¡Eliminalo!',
+		  cancelButtonText: 'Cancelar',
+		}).then((result) => {
+		  if (result.isConfirmed) {
+			/*Swal.fire(
+			  'Deleted!',
+			  'Your file has been deleted.',
+			  'success'
+			)*/
+			this.submit();
+		  }
+		})
+	})
+	
+	
 </script>

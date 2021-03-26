@@ -77,7 +77,7 @@ class tb_reservaController extends Controller
 			 	'dieta_id' => 'required',
             ]);
 		tb_reserva::create($validatedData);
-		return  redirect('/tb_reservas');
+		return  redirect('/tb_reservas')->with("crear_reserva",'Se ha añadido una reserva correctamente.');
     }
 
     /**
@@ -123,7 +123,7 @@ class tb_reservaController extends Controller
 		
 		tb_reserva::find($id)->update($datos);
 		
-		return  redirect('/tb_reservas');
+		return  redirect('/tb_reservas')->with("editar_reserva",'Se ha editado una reserva correctamente.');
     }
 
     /**
@@ -136,6 +136,6 @@ class tb_reservaController extends Controller
     {
         tb_reserva::find($id)->delete();
 		
-		return  redirect('/tb_reservas');
+		return  redirect('/tb_reservas')->with("eliminar",'Ok.');
     }
 }

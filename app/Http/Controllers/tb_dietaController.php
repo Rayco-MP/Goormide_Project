@@ -62,7 +62,7 @@ class tb_dietaController extends Controller
             ]);
 		
 		tb_dieta::create($validatedData);
-		return  redirect('/tb_dietas');
+		return  redirect('/tb_dietas')->with("crear_dieta",'Se ha añadido una dieta correctamente.');
     }
 
     /**
@@ -104,7 +104,7 @@ class tb_dietaController extends Controller
 		
 		tb_dieta::find($id)->update($datos);
 		
-		return  redirect('/tb_dietas');
+		return  redirect('/tb_dietas')->with("editar_dieta",'Se ha editado una dieta correctamente.');
     }
 
     /**
@@ -117,6 +117,6 @@ class tb_dietaController extends Controller
     {
         tb_dieta::find($id)->delete();
 		
-		return  redirect('/tb_dietas');
+		return  redirect('/tb_dietas')->with("eliminar",'Ok.');
     }
 }
