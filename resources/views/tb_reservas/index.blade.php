@@ -3,7 +3,7 @@
 @section("content")
 
 
-	
+<h1>Reservas</h1>
 <div class="btn btn-crimson btn-inline-block" data-toggle="modal" data-target="#myModalCreate">
 	<a href="#" class="btn btn-primary"><i class="material-icons">add</i></a>
 </div>
@@ -92,10 +92,15 @@
 								<div class="form-group">
 								<label class="col-lg-2 control-label">Hora de entrada:</label>
 									<div class="col-lg-10">
-										<input  name="hora_entrada" type="time" class="form-control" >
-										@if ($errors->has('hora_entrada'))
-            								<span class="text-danger">{{ $errors->first('hora_entrada') }}</span>
-        								@endif
+										<div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true" style="z-index:300000;">
+											<input  name="hora_entrada" type="text" class="form-control" >
+											<span class="input-group-addon">
+												<span class="glyphicon glyphicon-time"></span>
+											</span>
+											@if ($errors->has('hora_entrada'))
+												<span class="text-danger">{{ $errors->first('hora_entrada') }}</span>
+											@endif
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
@@ -110,10 +115,15 @@
 								<div class="form-group">
 								<label class="col-lg-2 control-label">Hora de salida:</label>
 									<div class="col-lg-10">
-										<input  name="hora_salida" type="time" class="form-control" >
-										@if ($errors->has('hora_salida'))
-            								<span class="text-danger">{{ $errors->first('hora_salida') }}</span>
-        								@endif
+										<div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true" style="z-index:300000;">
+											<input  name="hora_salida" type="text" class="form-control" >
+											<span class="input-group-addon">
+												<span class="glyphicon glyphicon-time"></span>
+											</span>
+											@if ($errors->has('hora_salida'))
+												<span class="text-danger">{{ $errors->first('hora_salida') }}</span>
+											@endif
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
@@ -212,10 +222,15 @@
 								<div class="form-group">
 								<label class="col-lg-2 control-label">Hora de entrada:</label>
 									<div class="col-lg-10">
-										<input  name="hora_entrada" type="time" value="{{$tb_reserva->hora_entrada??''}}"  class="form-control" >
-										@if ($errors->has('hora_entrada'))
-            							<span class="text-danger">{{ $errors->first('hora_entrada') }}</span>
-        								@endif
+										<div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true" style="z-index:300000;">
+											<input  name="hora_entrada" type="text" value="{{$tb_reserva->hora_entrada??''}}"  class="form-control" >
+											<span class="input-group-addon">
+												<span class="glyphicon glyphicon-time"></span>
+											</span>
+											@if ($errors->has('hora_entrada'))
+											<span class="text-danger">{{ $errors->first('hora_entrada') }}</span>
+											@endif
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
@@ -230,10 +245,15 @@
 								<div class="form-group">
 								<label class="col-lg-2 control-label">Hora de salida:</label>
 									<div class="col-lg-10">
-										<input  name="hora_salida" type="time" value="{{$tb_reserva->hora_salida??''}}"  class="form-control" >
-										@if ($errors->has('hora_salida'))
-											<span class="text-danger">{{ $errors->first('hora_salida') }}</span>
-										@endif
+										<div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true" style="z-index:300000;">
+											<input  name="hora_salida" type="text" value="{{$tb_reserva->hora_salida??''}}"  class="form-control" >
+											<span class="input-group-addon">
+												<span class="glyphicon glyphicon-time"></span>
+											</span>
+											@if ($errors->has('hora_salida'))
+												<span class="text-danger">{{ $errors->first('hora_salida') }}</span>
+											@endif
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
@@ -316,7 +336,9 @@
 			)
 	</script>
 @endif
-
+<script type="text/javascript">
+$('.clockpicker').clockpicker();
+</script>
 
 
 @endsection

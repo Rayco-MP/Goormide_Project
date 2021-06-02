@@ -3,7 +3,7 @@
 @section("content")
 
 
-	
+<h1>Habitaciones</h1>
 <div class="btn btn-crimson btn-inline-block" data-toggle="modal" data-target="#myModalCreate">
 	<a href="#" class="btn btn-primary"><i class="material-icons">add</i></a>
 </div>
